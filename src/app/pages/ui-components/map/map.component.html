@@ -1,0 +1,15 @@
+<h1>หาตำแหน่ง</h1>
+<tr>
+    <td><mat-form-field class="form1">
+      <mat-label>Latitude</mat-label>
+      <input matInput #lat>
+    </mat-form-field></td>
+    <td><mat-form-field class="form2">
+      <mat-label>Longitude</mat-label>
+      <input matInput #lng>
+    </mat-form-field></td>
+    <td>
+        <button mat-stroked-button (click)="toklung()">ตกลง</button>
+    </td>
+  </tr>
+<div class="full" id="map"></div>

@@ -1,0 +1,359 @@
+<mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+<mat-form-field style="width: 50%;">
+  <mat-label>ค้นหา</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex.Amelia" #input>
+  <i-tabler matSuffix class="routeIcon" name="search" matListItemIcon></i-tabler>
+</mat-form-field>
+<div class="mat-elevation-z8">
+  <mat-tab-group>
+    <mat-tab label="First">
+      <table mat-table [dataSource]="dataSource1" matSort>
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="progress">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+          <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fruit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
+          <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="button">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Button </th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.progress> 30">
+              <button mat-raised-button color="primary" class="m-t-8" (click)="openDialog(row)">click</button>
+            </div>
+            <div *ngIf="row.progress<= 30">
+              <button mat-raised-button disabled>click</button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">ไม่มีข้อมูลตรงกับ"{{input.value}}"</td>
+        </tr>
+      </table>
+      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+
+
+    </mat-tab>
+
+    <mat-tab label="Second">
+      <table mat-table [dataSource]="dataSource2" matSort>
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="progress">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+          <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fruit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
+          <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="button">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Button </th>
+          <td mat-cell *matCellDef="let row"> <button mat-raised-button>click</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">ไม่มีข้อมูลตรงกับ"{{input.value}}"</td>
+        </tr>
+      </table>
+      <mat-paginator #paginator2 [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<h1>แนะนำผลไม้</h1>
+<div>
+  <tr>
+    <td><mat-card class="example-card" appearance="outlined" style="width: 120%">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>Pineapple</mat-card-title>
+            <mat-card-subtitle>Jack V.</mat-card-subtitle>
+            <img mat-card-sm-image src="assets\images\pinab.jpg">
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          {{longText1}}
+        </mat-card-content>
+      </mat-card></td>
+    <td>
+      <mat-card class="example-card" appearance="outlined" style="width:120%">
+
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>Mango</mat-card-title>
+            <mat-card-subtitle>Asher A.</mat-card-subtitle>
+            <img mat-card-sm-image src="assets\images\mango.jpg">
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          {{longText2}}
+        </mat-card-content>
+      </mat-card>
+    </td>
+  </tr>
+</div>
+<div>
+  <h1>กรอกช่องทางการติดต่อ</h1>
+  <h2>หากคุณต้องการสั่งผลไม้</h2>
+</div>
+<tr><td><mat-form-field class="example-full-width"style="width: 475px;">
+  <mat-label>ชื่อ</mat-label>
+  <input matInput [(ngModel)]="name" [value]="name">
+</mat-form-field> </td>
+<mat-form-field class="example-full-width"style="width: 475px;">
+  <mat-label>นามสกุล</mat-label>
+  <input matInput [(ngModel)]="lastname" [value]="lastname">
+</mat-form-field>
+<tr>
+  <td><mat-form-field class="example-full-width" style="width: 475px;">
+      <mat-label>ที่อยู่1</mat-label>
+      <input matInput [(ngModel)]="address1" [value]="address1">
+    </mat-form-field></td>
+  <td><mat-form-field class="example-full-width"style="width: 475px;">
+      <mat-label>ที่อยู่2</mat-label>
+      <input matInput [(ngModel)]="address2" [value]="address2">
+    </mat-form-field></td>
+</tr>
+<tr>
+  <td><mat-form-field class="example-full-width" >
+      <mat-label>เมือง</mat-label>
+      <input matInput [(ngModel)]="city" [value]="city">
+    </mat-form-field></td>
+  <td><mat-form-field class="example-full-width" >
+      <mat-label>จังหวัด</mat-label>
+      <input matInput [(ngModel)]="province" [value]="province">
+    </mat-form-field></td>
+</tr>
+<td><mat-form-field class="example-full-width"  >
+  <mat-label>รหัสไปรษณีย์</mat-label>
+  <input matInput maxlength="5" placeholder="Ex. 94105" [(ngModel)]="postalCode" [value]="postalCode" >
+  <mat-hint></mat-hint>
+</mat-form-field></td>
+<mat-form-field class="example-full-width" style="width: 475px;">
+  <mat-label>เบอร์โทรศัพท์</mat-label>
+  <span matTextPrefix>+66 &nbsp;</span>
+  <input type="tel" maxlength="9" matInput placeholder="12-111-1111" [(ngModel)]="phone" [value]="phone" >
+  <i-tabler matSuffix class="routeIcon" name="pencil" matListItemIcon></i-tabler>
+</mat-form-field>
+<div>
+  <button mat-raised-button color="primary" (click)="dialogtest()">ตกลง</button>
+</div>
+
+<div>
+<h2>เลือกผลสั่งไม้ตามวันที่</h2>
+<mat-form-field>
+  <input matInput [matDatepicker]="picker2"
+         [formControl]="serializedDate">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker #picker2></mat-datepicker>
+</mat-form-field>
+<h3>วันที่1=blueberry</h3>
+<h3>วันที่2=lychee</h3>
+<h3>วันที่3=kiwi</h3>
+<h3>วันที่4=mango</h3>
+<h3>วันที่5=peach</h3>
+<h3>วันที่6=lime</h3>
+<h3>วันที่7=pomegranate</h3>
+<h3>วันที่8=pineapple</h3>
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step() === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title> </mat-panel-title>
+      <mat-panel-description>
+        กรอกข้อมูลส่วนตัว
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <mat-label>เลขบัตรประชาชน</mat-label>
+      <input matInput />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>เลขหลังบัตรประชาชน</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-action-row>
+      <button mat-button (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step() === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title> </mat-panel-title>
+      <mat-panel-description>
+        pinต่างส่วนตัว
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <mat-label>โทรศัพท์</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>กรุงไทย</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>กรุงเทพ</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>ออมสิน</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>กสิกรไทย</mat-label>
+      <input matInput />
+    </mat-form-field>
+
+    <mat-action-row>
+      <button mat-button (click)="prevStep()">Previous</button>
+      <button mat-button (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step() === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title></mat-panel-title>
+      <mat-panel-description>
+        วันที่ไปเที่ยว
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" [formControl]="date">
+      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    <mat-action-row>
+      <button mat-button (click)="prevStep()">Previous</button>
+      <button mat-button (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<h2>นโยบายบริษัท</h2>
+<mat-list>
+  <mat-list-item>1.ห้ามเผยแพร่ข้อมูลบริษัท</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>2.ทางร้านไม่รับคืนหรือเคลมสินค้าทุกกรณี</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>3.ร้านค้าถูกเสมอ</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>4.หากมีอันตรายกับลูกค้า ทางร้านไม่เกี่ยวข้องหรือรับผิดชอบใดๆทั้งสิ้น</mat-list-item>
+  <mat-divider></mat-divider>
+  <section class="example-section">
+    <mat-checkbox class="example-margin">ยอมรับข้อตกลง</mat-checkbox>
+  </section>
+</mat-list>
+<button mat-button [matMenuTriggerFor]="menu">เมนู</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>หิวแล้ว</button>
+  <button mat-menu-item>ยังไม่หิว</button>
+</mat-menu>
+<div></div>
+<mat-radio-group aria-label="Select an option">
+  <mat-radio-button value="1">รีบ</mat-radio-button>
+  <mat-radio-button value="2">ไม่รีบ</mat-radio-button>
+</mat-radio-group>
+<mat-chip-set aria-label="Fish selection">
+  <mat-chip>อร่อย</mat-chip>
+  <mat-chip>ไม่อร่อย</mat-chip>
+</mat-chip-set>
+<mat-spinner></mat-spinner>
+<mat-slider min="0" max="100000" step="1000" showTickMarks discrete [displayWith]="formatLabel">
+  <input matSliderThumb>
+</mat-slider>
+<button mat-raised-button #tooltip="matTooltip"
+        matTooltip="Info about the action"
+        matTooltipPosition="right"
+        aria-tooltip="Button that displays and hides a tooltip triggered by other buttons">
+  Action
+</button>
+<mat-stepper labelPosition="bottom" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" optional>
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Custom Toolbar</span>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <span>Second Line</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">verified_user</mat-icon>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <span>Third Line</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
