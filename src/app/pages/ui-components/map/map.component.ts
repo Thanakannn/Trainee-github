@@ -40,7 +40,7 @@ export class MapComponent implements OnInit {
       position: { lat, lng },
       map: this.map,
       icon: {
-        path: google.maps.SymbolPath.CIRCLE,
+        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
         scale: 10,
         fillColor: "#FF0000",
         fillOpacity: 1,
